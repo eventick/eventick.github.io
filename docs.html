@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title>Documentaçãdo da Eventick API V1</title>
+        <meta name="description" content="  ">
+        
+        <!-- styles -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="assets/css/main.css" rel="stylesheet">
+        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    </head>
+    <body data-spy="scroll" data-target=".sidebar">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="./index.html">Eventick</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li>
+                            <a href="./index.html">Overview</a>
+                        </li>
+                        <li class="active">
+                            <a href="./docs.html">Documentação</a>
+                        </li>
+                          <li>
+                            <a href="./integracao.html">Websites</a>
+                        </li>
+                    </ul>
+                </div><!-- /.collapse -->
+            </div>
+        </div><!-- /.navbar -->
+        
+        <div class="container">
+            <div class="row">
+
+            <div class="span3 sidebar">
+                <ul class="nav nav-list" data-spy="affix" >
+                    <li class="nav-header">Introdução</li>
+                    <li><a href="#introducao">Link</a></li>
+                    <li class="nav-header">Autenticação</li>
+                    <li><a href="#autenticao">Link</a></li>
+                    <li class="nav-header">Eventos</li>
+                    <li><a href="#eventos">Listando eventos</a></li>
+                    <li class="nav-header">Participantes</li>
+                    <li><a href="#lista_part">Listagem</a></li>
+                    <li><a href="#checking">Checkin</a></li>
+                </ul>
+            </div>
+            <div class="span9">
+                <div class="row">
+                    <section id="introducao">
+                        <div class="page-header">
+                            <h1>Introdução</h1>
+                        </div>
+                    </section>
+                <section id="autenticao">
+                    <div class="page-header">
+                        <h1>Autenticação</h1>
+                    </div>
+                    <p>
+                        Descrição breve do recurso.
+                    </p>
+                    <h3>Resource URL</h3>
+                    <p>https://www.eventick.com.br/api/v1/tokens.json</p>
+                    
+                    <h3>Parâmetros</h3>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>email</td><td>Drescição do campo</td></tr>
+                            <tr><td>password</td><td>Drescição do campo</td></tr>
+                        </tbody>
+                    </table>
+           
+                    <h3>Exemplo de Requisição</h3>
+                    <p>curl -d "email=jesus@eventick.com.br&amp;password=12345678" https://www.eventick.com.br/api/v1/tokens.json</p>
+                    
+                    <pre class="prettyprint language-javascript linenums">
+{
+    "token":"dpoi2154wijdsk4fo65ow4o2pkd"
+}
+</pre>
+
+                </section>
+                <section id="eventos">
+                    <div class="page-header">
+                        <h1>Eventos</h1>
+                    </div>
+                    
+                    <h3>Resource URL</h3>
+                    <p>
+                        https://www.eventick.com.br/api/v1/events.json
+                    </p>
+                    
+                    <h3>Parâmetros</h3>                    
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr><td>auth_token</td><td>Drescição do campo</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Exemplo de Requisição</h3>
+                    <p>
+                        GET https://www.eventick.com.br/api/v1/events.json?auth_token=f9d93dk211394
+                    </p>
+<pre class="prettyprint language-javascript linenums">
+[
+    {
+        "id": 11,
+        "start_at": "2012-10-17T16:00:00-03:00",
+        "title": "teste",
+        "tickets" : [
+             {
+                 "id": 10,
+                 "type": "mas"
+             },
+             {
+                 "id": 11,
+                 "type" :  "meia"
+             }
+        ]
+    }
+]
+</pre>
+               
+                </section>
+                    <section id="participantes">
+                        <div class="page-header">
+                            <h1>Participantes</h1>
+                        </div>
+                    
+                        <div id="lista_part">
+                            <h2>Listagem de Participantes</h2>
+                            <h3>Resource URL</h3>
+                            <p>https://www.eventick.com.br/api/v1/attendees.json</p>    
+                            
+                            <h3>Parâmetros</h3>                    
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr><td>event_id</td><td>Descrição do campo</td></tr>
+                                    <tr><td>auth_token</td><td>Descrição do campo</td></tr>
+                                </tbody>
+                            </table>
+
+
+                            <h3>Exemplo de Requisição</h3>
+                            <p>
+                                GET https://www.eventick.com.br/api/v1/attendees.json?event_id=12&auth_token=f9d93dk211394
+                            </p>
+<pre class="prettyprint language-javascript linenums">
+[
+    {
+        "id": 29,
+        "name": "Jesus",
+        "search_index" : "jesus",
+        "code": "ZVYNDZ",
+        "ticket_type": "mas",
+        "checked_at": "2012-10-17T16:54:35-03:00"
+    },
+    {
+        "id": 30,
+        "name": "cirdes",
+        "search_index" : "cirdes",
+        "code": "T84LCH",
+        "ticket_type": "mas",
+        "checked_at": ""
+    }
+]
+</pre>
+                        </div><!-- /#lista_part -->
+                        <div id="checking">
+                            <h2>Checkin de Participante</h2>
+                            <h3>Resource URL</h3>
+                            <p>https://www.eventick.com.br/api/v1/attendees/check_all.json</p>
+                            
+                            <h3>Parâmetros</h3>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr><td>attendees</td><td> <code>{ "id": 10, "checked_at": "2012-10-17T16:54:35-03:00"}</code></td></tr>
+                                    <tr><td>auth_token</td><td>Descrição do campo</td></tr>
+                                </tbody>
+                            </table>
+                            
+                            <h3>Exemplo de Requisição</h3>
+                            <p>
+                                curl -i -H "Content-Type: application/json" -X PUT -d '{"attendees":[{"id":10,"checked_at":"2012-10-17T16:54:35-03:00"}]}' https://www.eventick.com.br/api/v1/attendees/check_all.json
+                            </p>
+<pre class="prettyprint language-javascript linenums">
+{
+    "attendees": [
+        {
+            "id": 10,
+            "checked_at": "2012-10-17T16:54:35-03:00"
+        },
+        {
+            "id": 11,
+            "checked_at": "2012-10-17T16:54:35-03:00"
+        }
+    ]
+}
+</pre>
+                        </div>
+
+
+                        </section>
+
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+          <div class="container">
+            <p>Designed by Eventick 2013</p>
+            <ul class="footer-links">
+              <li><a href="http://blog.eventick.com.br">Blog</a></li>
+              <li><a href="mailto:api@eventick.com.br">Achou um bug? Avise a gente!</a></li>
+            </ul>
+          </div>
+        </footer>
+        
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/bootstrap-transition.js"></script>
+        <script src="assets/js/bootstrap-alert.js"></script>
+        <script src="assets/js/bootstrap-modal.js"></script>
+        <script src="assets/js/bootstrap-dropdown.js"></script>
+        <script src="assets/js/bootstrap-scrollspy.js"></script>
+        <script src="assets/js/bootstrap-tab.js"></script>
+        <script src="assets/js/bootstrap-tooltip.js"></script>
+        <script src="assets/js/bootstrap-popover.js"></script>
+        <script src="assets/js/bootstrap-button.js"></script>
+        <script src="assets/js/bootstrap-collapse.js"></script>
+        <script src="assets/js/bootstrap-carousel.js"></script>
+        <script src="assets/js/bootstrap-typeahead.js"></script>
+        <script src="assets/js/bootstrap-affix.js"></script>
+    
+        <script src="assets/js/google-code-prettify/prettify.js"></script>
+    
+        <script src="assets/js/main.js"></script>
+        <script>
+          !function ($) {
+            $(function(){
+              window.prettyPrint && prettyPrint()   
+            })
+          }(window.jQuery)
+        </script>
+        
+    </body>
+</html>
