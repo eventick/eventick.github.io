@@ -47,10 +47,12 @@
                     <li class="nav-header">Autenticação</li>
                     <li><a href="#autenticao">Recebendo o token</a></li>
                     <li class="nav-header">Eventos</li>
-                    <li><a href="#eventos">Listando eventos</a></li>
+                    <li><a href="#eventos-all">Listando eventos</a></li>
+                    <li><a href="#evento">Informação de um evento</a></li>
                     <li class="nav-header">Participantes</li>
-                    <li><a href="#participantes">Listagem</a></li>
-                    <li><a href="#checking">Checkin</a></li>
+                    <li><a href="#lista_part">Listagem</a></li>
+                    <li><a href="#participante">Informação do Participante</a></li>
+                    <li><a href="#checking">Checkin de vários participantes</a></li>
                 </ul>
             </div>
             <div class="span9">
@@ -108,6 +110,7 @@
 
                 </section>
                 <section id="eventos">
+                    <section id="eventos-all">
                     <div class="page-header">
                         <h1>Eventos</h1>
                     </div>
@@ -121,10 +124,9 @@
                     <h3>Parâmetros</h3>
                     <dl class="dl-horizontal">
                         <dt>auth_token</dt>
-                        <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
+                        <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
                     </dl>                    
                    
-<div>
                     
                     <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl -i https://www.eventick.com.br/api/v1/events.json \
@@ -151,8 +153,44 @@
     }
 ]
 </pre>
-               </div>
-                </section>
+               
+                    </section>
+                    <section id="evento">
+                        <h2>Informação de um evento</h2>
+                        <p>Texto sobre o recurso</p>
+                        <h3>Resource URL</h3>
+                        <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_slug.json</code></pre>
+                        <h3>Parâmetros</h3>
+                        <dl class="dl-horizontal">
+                            <dt>auth_token</dt>
+                            <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+                            <dt>event_slug</dt>
+                            <dd><span>Obrigatório.</span><p>Slug do evento</p></dd>
+                        </dl>
+                        <h3>Exemplo de Requisição</h3>
+<pre><code>$ curl -i https://www.eventick.com.br/api/v1/events/escritorio-aberto.json \
+    -u "f9d93dk211394:"
+</code></pre>
+                        <h3>Exemplo de Resposta</h3>
+<pre class="prettyprint language-javascript linenums">
+{
+    "id": 11,
+    "start_at": "2012-10-17T16:00:00-03:00",
+    "title": "teste",
+    "tickets" : [
+         {
+             "id": 10,
+             "type": "mas"
+         },
+         {
+             "id": 11,
+             "type" :  "meia"
+         }
+    ]
+}
+</pre>
+                    </section><!-- /#evento -->
+                </section><!-- /#eventos -->
                     <section id="participantes">
                         <div class="page-header">
                             <h1>Participantes</h1>
@@ -177,7 +215,7 @@
                             <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl -i https://www.eventick.com.br/api/v1/attendees.json \
     -u "f9d93dk211394:" \
-    -d "event_id=12"
+    -d "event_slug=escritorio-aberto"
 </code></pre>
                              <h3>Exemplo de Resposta</h3>
 <pre class="prettyprint language-javascript linenums">
@@ -199,6 +237,37 @@
         "checked_at": ""
     }
 ]
+</pre>
+                        </section><!-- /#lista_part -->
+                        <section id="participante">
+                            <h2>Informação de um Participante</h2>
+                            <h3>Resource URL</h3>
+                            <pre><code>GET https://www.eventick.com.br/api/v1/attendees/:code.json</code></pre>
+                            
+                            <h3>Parâmetros</h3>                    
+                            
+                            <dl class="dl-horizontal">
+                                <dt>code</dt>
+                                <dd><span>Obrigatório.</span><p>O código do ingresso do participante que você deseja recuperar as informações</p></dd>
+                                <dt>auth_token</dt>
+                                <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
+                            </dl>
+
+
+                            <h3>Exemplo de Requisição</h3>
+<pre><code>$ curl -i https://www.eventick.com.br/api/v1/attendees/AD1243.json \
+    -u "f9d93dk211394:"
+</code></pre>
+                             <h3>Exemplo de Resposta</h3>
+<pre class="prettyprint language-javascript linenums">
+{
+    "id": 29,
+    "name": "Jesus",
+    "search_index" : "jesus",
+    "code": "ZVYNDZ",
+    "ticket_type": "mas",
+    "checked_at": "2012-10-17T16:54:35-03:00"
+}
 </pre>
                         </section><!-- /#lista_part -->
                         <section id="checking">
@@ -241,8 +310,7 @@
                         </section><!-- /#checking -->
 
 
-                        </section>
-
+                    </section><!-- /#participantes-->
             </div>
             </div>
             </div>
@@ -250,9 +318,10 @@
         
         <footer class="footer">
           <div class="container">
-            <p>Designed by Eventick 2013</p>
-            <ul class="footer-links">
+            <p>Designed by <a href="http://www.eventick.com.br">Eventick</a> © 2013 with <a href="http://twitter.github.io/bootstrap/">Bootstrap</a></p>
+            <ul class="footer-links inline">
               <li><a href="http://blog.eventick.com.br">Blog</a></li>
+                <li class="muted">·</li>
               <li><a href="mailto:api@eventick.com.br">Achou um bug? Avise a gente!</a></li>
             </ul>
           </div>
