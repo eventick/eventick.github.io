@@ -1,357 +1,379 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8">
-        <title>Documentaçãdo da Eventick API V1</title>
-        <meta name="description" content="  ">
-        
-        <!-- styles -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet">
-        <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
-    </head>
-    <body data-spy="scroll" data-target=".sidebar" data-offset-top="200">
-        <div class="navbar navbar-inverse navbar-fixed-top" >
-            <div class="navbar-inner">
-                <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="brand" href="./index.html"><span>Eventick</span> Developers</a>
-                <div class="nav-collapse collapse">
-                    <ul class="nav">
-                        <li>
-                            <a href="./index.html">Overview</a>
-                        </li>
-                        <li class="active">
-                            <a href="./docs.html">Documentação</a>
-                        </li>
-                          <li>
-                            <a href="./integracao.html">Websites</a>
-                        </li>
-                    </ul>
-                </div><!-- /.collapse -->
+<head>
+  <meta charset="utf-8">
+  <title>Documentaçãdo da Eventick API V1</title>
+  <meta name="description" content="  ">
+
+  <!-- styles -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+</head>
+<body data-spy="scroll" data-target=".sidebar" data-offset-top="200">
+  <div class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="navbar-inner">
+      <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="./index.html"><span>Eventick</span> Developers</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li>
+            <a href="./index.html">Overview</a>
+          </li>
+          <li class="active">
+            <a href="./docs.html">Documentação</a>
+          </li>
+          <li>
+            <a href="./integracao.html">Websites</a>
+          </li>
+        </ul>
+      </div><!-- /.collapse -->
+    </div>
+  </div><!-- /.navbar -->
+
+  <div class="container">
+    <div class="row">
+
+      <div class="span3 sidebar">
+        <ul class="nav nav-list" >
+          <li class="nav-header">Documentação</li>
+          <li><a href="#introducao">Introdução</a></li>
+          <li><a href="#erros">Erros</a></li>
+          <li class="nav-header">Autenticação</li>
+          <li><a href="#autenticao">Recebendo o token</a></li>
+          <li class="nav-header">Eventos</li>
+          <li><a href="#eventos-all">Listando eventos</a></li>
+          <li><a href="#evento">Informação de um evento</a></li>
+          <li class="nav-header">Participantes</li>
+          <li><a href="#lista_part">Listagem</a></li>
+          <li><a href="#participante">Informação do Participante</a></li>
+          <li><a href="#check">Checkin de participante</a></li>
+          <li><a href="#check-all">Checkin de vários participantes</a></li>
+        </ul>
+      </div>
+      <div class="span9">
+        <div class="row">
+          <section id="introducao">
+            <div class="page-header">
+              <h1>Introdução</h1>
             </div>
-        </div><!-- /.navbar -->
-        
-        <div class="container">
-            <div class="row">
+            <p> 
+              O Eventick é formado por desenvolvedores, sabemos da importância de uma API para
+              que aplicativos possam se integrar com a nossa plataforma. Seguimos as orientaçoes de Design <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">RESTful</a> e  <a href="http://jsonapi.org/" target="_blank">JSON API</a>.
+            </p>
 
-            <div class="span3 sidebar">
-                <ul class="nav nav-list" >
-                    <li class="nav-header">Documentação</li>
-                    <li><a href="#introducao">Introdução</a></li>
-                    <li><a href="#erros">Erros</a></li>
-                    <li class="nav-header">Autenticação</li>
-                    <li><a href="#autenticao">Recebendo o token</a></li>
-                    <li class="nav-header">Eventos</li>
-                    <li><a href="#eventos-all">Listando eventos</a></li>
-                    <li><a href="#evento">Informação de um evento</a></li>
-                    <li class="nav-header">Participantes</li>
-                    <li><a href="#lista_part">Listagem</a></li>
-                    <li><a href="#participante">Informação do Participante</a></li>
-                    <li><a href="#checking">Checkin de vários participantes</a></li>
-                </ul>
+            <p>A API está disponivel somente via HTTPS. A URL base é <code>https://www.eventick.com.br/api/v1</code>. Todos os dados devem ser recebidos e enviados em JSON. Os campos de data e tempo estarão no formato ISO 8601: <code>YYYY-MM-DDTHH:MM:SS±hh:mm</code></p>
+            <section id="erros">
+              <h2>Erros</h2>
+              <p>Utilizamos os status code do protocolo http, que estarão disponível no header de cada response.</p>
+
+              <dl class="dl-horizontal">
+                <dt>200 OK</dt> <dd>Tudo funcionou como esperado</dd>
+                <dt>400 Bad Request</dt><dd>Geralmente um problema com os parametros.</dd>
+                <dt>401 Unauthorized</dt><dd>Acesso com token de acesso invalido.</dd>
+                <dt>404 Not Found</dt><dd>O recurso acessado não existe.</dd>
+                <dt>50X Server errors</dt><dd>Nossa falta, algum erro do nosso servidor.</dd>
+              </dl>
+            </section>
+          </section>
+
+          <section id="autenticao">
+            <div class="page-header">
+              <h1>Autenticação</h1>
             </div>
-            <div class="span9">
-                <div class="row">
-                    <section id="introducao">
-                        <div class="page-header">
-                            <h1>Introdução</h1>
-                        </div>
-                        <p>Essa API surgiu da nossa necessidade de fazer aplicativos para o Eventick. 
-                            Iniciamente a unica escrita permitida é o checkin de participantes. 
-                            Tentamos seguir ao máximo as orientaçoes de Design <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">RESTful</a>. </p>
-                        <p>A API está disponivel somente via HTTPS. A URL base é <code>https://www.eventick.com.br/api/v1</code>. Todos os dados devem ser recebidos e enviados em JSON. Os campos de data e tempo estarão no formato ISO 8601: <code>YYYY-MM-DDTHH:MM:SS±hh:mm</code></p>
-                        <section id="erros">
-                            <h2>Erros</h2>
-                              <p>Utilizamos os status code do protocolo http, que estarão disponível no header de cada response.</p>
-                            
-                            <dl class="dl-horizontal">
-                                <dt>200 OK</dt>
-                                <dd>Tudo funcionou como esperado</dd>
-                                <dt>400 Bad Request</dt><dd>Geralmente um problema com os parametros.</dd>
-                                <dt>401 Unauthorized</dt><dd>Acesso com token de acesso invalido.</dd>
-                                <dt>402 Request Failed</dt><dd>Parameters were valid but request failed.</dd>
-                                <dt>404 Not Found</dt><dd>O recurso acessado não existe.</dd>
-                                <dt>50X Server errors</dt><dd>Nossa falta, algum erro do nosso servidor.</dd>
-                            </dl>
-                        </section>
 
-                    </section>
-                <section id="autenticao">
-                    <div class="page-header">
-                        <h1>Autenticação</h1>
-                    </div>
-                    <p>Ao executar uma autenticação você receberá um token para as demais requisiçoes. A autenticação é via <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Auth.</a></p>
-                    <h3>Resource URL</h3>
-                    <pre><code>GET https://www.eventick.com.br/api/v1/tokens.json</code></pre>
-                    
-                    <h3>Parâmetros</h3>
-                    <dl class="dl-horizontal">
-                            <dt>email</dt><dd><span>Obrigatório.</span><p>Você deve informar o email que você utiliza para acessar sua conta no Eventick.</p></dd>
-                            <dt>password</dt><dd><span>Obrigatório.</span><p>Senha utlizada para acessa sua conta no eventick</p></dd>
-                    </dl>
-           
-                    <h3>Exemplo de Requisição</h3>
-                    
-<pre><code>$ curl -i https://www.eventick.com.br/api/v1/tokens.json \
-    -u "jesus@eventick.com.br:12345678"
-</code></pre>
-                    
-                    <h3>Exemplo de Resposta</h3>
-                    <pre class="prettyprint language-javascript linenums">
-{
-    "token":"dpoi2154wijdsk4fo65ow4o2pkd"
-}
-</pre>
+            <h2>Requisitando token</h2>
 
-                </section>
-                <section id="eventos">
-                    <section id="eventos-all">
-                    <div class="page-header">
-                        <h1>Eventos</h1>
-                    </div>
-                    <p>Texto sobre Eventos.</p>
+            <p>Ao executar uma autenticação você receberá um token para as demais requisiçoes. A autenticação é via <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Auth.</a></p>
+            <h3>Resource URL</h3>
+            <pre><code>GET https://www.eventick.com.br/api/v1/tokens.json</code></pre>
 
-                    <h2>Listando eventos</h2>
-                    
-                    <h3>Resource URL</h3>
-                    <pre><code>GET https://www.eventick.com.br/api/v1/events.json</code></pre>
-                    
-                    <h3>Parâmetros</h3>
-                    <dl class="dl-horizontal">
-                        <dt>auth_token</dt>
-                        <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
-                    </dl>                    
-                   
-                    
-                    <h3>Exemplo de Requisição</h3>
-<pre><code>$ curl -i https://www.eventick.com.br/api/v1/events.json \
-    -u "f9d93dk211394:"
-</code></pre>
-                   
-                    <h3>Exemplo de Resposta</h3>
-<pre class="prettyprint language-javascript linenums">
-[
-    {
-        "id": 11,
-        "start_at": "2012-10-17T16:00:00-03:00",
-        "title": "teste",
-        "tickets" : [
-             {
-                 "id": 10,
-                 "type": "mas"
-             },
-             {
-                 "id": 11,
-                 "type" :  "meia"
-             }
-        ]
-    }
-]
-</pre>
-               
-                    </section>
-                    <section id="evento">
-                        <h2>Informação de um evento</h2>
-                        <p>Texto sobre o recurso</p>
-                        <h3>Resource URL</h3>
-                        <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_slug.json</code></pre>
-                        <h3>Parâmetros</h3>
-                        <dl class="dl-horizontal">
-                            <dt>auth_token</dt>
-                            <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
-                            <dt>event_slug</dt>
-                            <dd><span>Obrigatório.</span><p>Slug do evento</p></dd>
-                        </dl>
-                        <h3>Exemplo de Requisição</h3>
-<pre><code>$ curl -i https://www.eventick.com.br/api/v1/events/escritorio-aberto.json \
-    -u "f9d93dk211394:"
-</code></pre>
-                        <h3>Exemplo de Resposta</h3>
-<pre class="prettyprint language-javascript linenums">
-{
-    "id": 11,
-    "start_at": "2012-10-17T16:00:00-03:00",
-    "title": "teste",
-    "tickets" : [
-         {
-             "id": 10,
-             "type": "mas"
-         },
-         {
-             "id": 11,
-             "type" :  "meia"
-         }
-    ]
-}
-</pre>
-                    </section><!-- /#evento -->
-                </section><!-- /#eventos -->
-                    <section id="participantes">
-                        <div class="page-header">
-                            <h1>Participantes</h1>
-                        </div>
-                        <p>Texto sobre participantes.</p>
-                        
-                        <section id="lista_part">
-                            <h2>Listagem de Participantes</h2>
-                            <h3>Resource URL</h3>
-                            <pre><code>GET https://www.eventick.com.br/api/v1/attendees.json</code></pre>
-                            
-                            <h3>Parâmetros</h3>                    
-                            
-                            <dl class="dl-horizontal">
-                                <dt>event_id</dt>
-                                <dd><span>Obrigatório.</span><p>O Identificado do evento que você deseja lista os participantes</p></dd>
-                                <dt>auth_token</dt>
-                                <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
-                            </dl>
+            <h3>Parâmetros</h3>
+            <dl class="dl-horizontal">
+              <dt>email</dt><dd><span>Obrigatório.</span><p>Você deve informar o email que você utiliza para acessar sua conta no Eventick.</p></dd>
+              <dt>password</dt><dd><span>Obrigatório.</span><p>Senha utlizada para acessa sua conta no eventick</p></dd>
+            </dl>
 
+            <h3>Exemplo de Requisição</h3>
 
-                            <h3>Exemplo de Requisição</h3>
-<pre><code>$ curl -i https://www.eventick.com.br/api/v1/attendees.json \
-    -u "f9d93dk211394:" \
-    -d "event_slug=escritorio-aberto"
-</code></pre>
-                             <h3>Exemplo de Resposta</h3>
-<pre class="prettyprint language-javascript linenums">
-[
-    {
-        "id": 29,
-        "name": "Jesus",
-        "search_index" : "jesus",
-        "code": "ZVYNDZ",
-        "ticket_type": "mas",
-        "checked_at": "2012-10-17T16:54:35-03:00"
-    },
-    {
-        "id": 30,
-        "name": "cirdes",
-        "search_index" : "cirdes",
-        "code": "T84LCH",
-        "ticket_type": "mas",
-        "checked_at": ""
-    }
-]
-</pre>
-                        </section><!-- /#lista_part -->
-                        <section id="participante">
-                            <h2>Informação de um Participante</h2>
-                            <h3>Resource URL</h3>
-                            <pre><code>GET https://www.eventick.com.br/api/v1/attendees/:code.json</code></pre>
-                            
-                            <h3>Parâmetros</h3>                    
-                            
-                            <dl class="dl-horizontal">
-                                <dt>code</dt>
-                                <dd><span>Obrigatório.</span><p>O código do ingresso do participante que você deseja recuperar as informações</p></dd>
-                                <dt>auth_token</dt>
-                                <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
-                            </dl>
+            <pre><code>$ curl --data '' https://www.eventick.com.br/api/v1/tokens.json --user 'email@eventick.com.br:password' </code></pre>
 
+            <h3>Exemplo de Resposta</h3>
+            <pre class="prettyprint language-javascript linenums">
+              {
+              "token":"dpoi2154wijdsk4fo65ow4o2pkd"
+              }
+            </pre>
+        </section>
 
-                            <h3>Exemplo de Requisição</h3>
-<pre><code>$ curl -i https://www.eventick.com.br/api/v1/attendees/AD1243.json \
-    -u "f9d93dk211394:"
-</code></pre>
-                             <h3>Exemplo de Resposta</h3>
-<pre class="prettyprint language-javascript linenums">
-{
-    "id": 29,
-    "name": "Jesus",
-    "search_index" : "jesus",
-    "code": "ZVYNDZ",
-    "ticket_type": "mas",
-    "checked_at": "2012-10-17T16:54:35-03:00"
-}
-</pre>
-                        </section><!-- /#lista_part -->
-                        <section id="checking">
-                            <h2>Checkin de Participante</h2>
-                            
-                            <p>You must include a "Content-Type: application/json" header to indicate this for each request that includes any data.</p>
-                            <h3>Resource URL</h3>
-                            <pre><code>PUT https://www.eventick.com.br/api/v1/attendees/check_all.json</code></pre>
-                            
-                            <h3>Parâmetros</h3>                    
-                            <dl class="dl-horizontal">
-                                <dt>attendees</dt>
-                                <dd><p>Os attendees para serem checados devem ser enviados nos formato JSON. Ex: <code>{ "id": 10, "checked_at": "2012-10-17T16:54:35-03:00"}</code></p></dd>
-                                <dt>auth_token</dt>
-                                <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
-                            </dl>
-                            
-                            <h3>Exemplo de Requisição</h3>
-<pre><code>$ curl -i https://www.eventick.com.br/api/v1/attendees/check_all.json \
-    -H "Content-Type: application/json" \ 
-    -X PUT \
-    -u "f9d93dk211394:" \
-    -d '{"attendees":[{"id":10,"checked_at":"2012-10-17T16:54:35-03:00"}]}'</code></pre>
-                            
-                            <h3>Exemplo de Resposta</h3>
-<pre class="prettyprint language-javascript linenums">
-{
-    "attendees": [
-        {
-            "id": 10,
-            "checked_at": "2012-10-17T16:54:35-03:00"
-        },
-        {
-            "id": 11,
-            "checked_at": "2012-10-17T16:54:35-03:00"
-        }
-    ]
-}
-</pre>
-                        </section><!-- /#checking -->
-
-
-                    </section><!-- /#participantes-->
+        <section id="eventos">
+          <section id="eventos-all">
+            <div class="page-header">
+              <h1>Eventos</h1>
             </div>
-            </div>
-            </div>
-        </div>
-        
-        <footer class="footer">
-          <div class="container">
-            <p>Designed by <a href="http://www.eventick.com.br">Eventick</a> © 2013 with <a href="http://twitter.github.io/bootstrap/">Bootstrap</a></p>
-            <ul class="footer-links inline">
-              <li><a href="http://blog.eventick.com.br">Blog</a></li>
-                <li class="muted">·</li>
-              <li><a href="mailto:api@eventick.com.br">Achou um bug? Avise a gente!</a></li>
-            </ul>
+            <p>Permite acessar as informações dos eventos de um usuário.</p>
+
+            <h2>Listando eventos</h2>
+
+            <h3>Resource URL</h3>
+            <pre><code>GET https://www.eventick.com.br/api/v1/events.json</code></pre>
+
+            <h3>Parâmetros</h3>
+            <dl class="dl-horizontal">
+              <dt>auth_token</dt>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+            </dl>                    
+
+
+            <h3>Exemplo de Requisição</h3>
+            <pre><code>$ curl https://www.eventick.com.br/api/v1/events.json --user 'YUxHFjkB1x3QHB5ak5qr:'
+            </code></pre>
+
+            <h3>Exemplo de Resposta</h3>
+            <pre class="prettyprint language-javascript linenums">
+            {
+              "events":[
+                {
+                  "id": 11,
+                  "start_at": "2012-10-17T16:00:00-03:00",
+                  "title": "teste"
+                }
+              ]
+            }  
+            </pre>
+          </section>  
+
+          <section id="evento">
+            <h2>Informação de um evento</h2>
+
+            <h3>Resource URL</h3>
+            <pre><code>GET https://www.eventick.com.br/api/v1/events/:id.json</code></pre>
+
+            <h3>Parâmetros</h3>
+            <dl class="dl-horizontal">
+              <dt>auth_token</dt>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dt>id</dt>
+              <dd><span>Obrigatório.</span><p>O identificador do evento</p></dd>
+            </dl>
+
+            <h3>Exemplo de Requisição</h3>
+            <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706.json --user 'YUxHFjkB1x3QHB5ak5qr:'
+            </code></pre>
+            
+            <h3>Exemplo de Resposta</h3>
+            <pre class="prettyprint language-javascript linenums">
+            {
+              "events":[
+                {
+                  "id": 11,
+                  "start_at": "2012-10-17T16:00:00-03:00",
+                  "title":"Abril pro Ruby'13",
+                  "venue":"Faculdade Marista",
+                  "slug":"abrilproruby",
+                  "links":{
+                    "tickets":[
+                      {
+                          "id":4464,
+                          "name":"Segundo lote + camisa"
+                       },
+                       {
+                          "id":4463,
+                          "name":"Ingresso promocional"
+                       }
+                    ]
+                  }
+                }
+              ]
+            }
+            </pre>
+          </section><!-- /#evento -->
+        </section><!-- /#eventos -->
+
+        <section id="participantes">
+          <div class="page-header">
+            <h1>Participantes</h1>
           </div>
-        </footer>
-        
-        <script src="assets/js/jquery.js"></script>
-        <script src="assets/js/bootstrap-transition.js"></script>
-        <script src="assets/js/bootstrap-alert.js"></script>
-        <script src="assets/js/bootstrap-modal.js"></script>
-        <script src="assets/js/bootstrap-dropdown.js"></script>
-        <script src="assets/js/bootstrap-scrollspy.js"></script>
-        <script src="assets/js/bootstrap-tab.js"></script>
-        <script src="assets/js/bootstrap-tooltip.js"></script>
-        <script src="assets/js/bootstrap-popover.js"></script>
-        <script src="assets/js/bootstrap-button.js"></script>
-        <script src="assets/js/bootstrap-collapse.js"></script>
-        <script src="assets/js/bootstrap-carousel.js"></script>
-        <script src="assets/js/bootstrap-typeahead.js"></script>
-        <script src="assets/js/bootstrap-affix.js"></script>
-    
-        <script src="assets/js/google-code-prettify/prettify.js"></script>
-    
-        <script src="assets/js/main.js"></script>
-        <script>
-          !function ($) {
-            $(function(){
-              window.prettyPrint && prettyPrint()   
-            })
-          }(window.jQuery)
-        </script>
-        
-    </body>
+          <p>Permite acessar os participantes de um evento e enviar para o Eventick os que já foram checados. </p>
+
+          <section id="lista_part">
+            <h2>Listagem de Participantes</h2>
+            <h3>Resource URL</h3>
+            <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_id/attendees.json</code></pre>
+
+            <h3>Parâmetros</h3>                    
+
+            <dl class="dl-horizontal">
+              <dt>auth_token</dt>
+              <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
+              <dt>event_id</dt>
+              <dd><span>Obrigatório.</span><p>O identificador do evento que você deseja listar os participantes</p></dd>
+              <dt>checked_after</dt>
+              <dd><span>Opcional.</span><p>Deve-se enviar apenas os participantes checados após essa hora</p></dd>
+            </dl>
+
+
+            <h3>Exemplo de Requisição</h3>
+            <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees.json?checked_after=2012-10-17T16:00:00-03:00 /
+              --user 'YUxHFjkB1x3QHB5ak5qr:'
+            </code></pre>
+            <h3>Exemplo de Resposta</h3>
+            <pre class="prettyprint language-javascript linenums">
+            {
+              "attendees":[
+                {
+                  "id": 29,
+                  "name": "Davidson",
+                  "code": "ZVYNDZ",
+                  "ticket_type": "mas",
+                  "checked_at": "2012-10-17T16:54:35-03:00"
+                },
+                {
+                  "id": 30,
+                  "name": "Cirdes",
+                  "code": "T84LCH",
+                  "ticket_type": "mas",
+                  "checked_at": ""
+                }
+              ]
+            }
+            </pre>
+          </section><!-- /#lista_part -->
+          
+          <section id="participante">
+            <h2>Informação de um Participante</h2>
+            <h3>Resource URL</h3>
+            <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_id/attendees/:id.json</code></pre>
+
+            <h3>Parâmetros</h3>                    
+
+            <dl class="dl-horizontal">
+              <dt>auth_token</dt>
+              <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
+              <dt>event_id</dt>
+              <dd><span>Obrigatório.</span><p>O identificador do evento do participante</p></dd>
+              <dt>id</dt>
+              <dd><span>Obrigatório.</span><p>O identificador do participante</p></dd>   
+            </dl>
+
+
+            <h3>Exemplo de Requisição</h3>
+            <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees/69782.json -user "f9d93dk211394:"
+            </code></pre>
+            <h3>Exemplo de Resposta</h3>
+            <pre class="prettyprint language-javascript linenums">
+             {
+              "attendees":[
+                {
+                  "id": 69782,
+                  "name": "Davidson",
+                  "code": "ZVYNDZ",
+                  "ticket_type": "mas",
+                  "checked_at": "2012-10-17T16:54:35-03:00"
+                }
+              ]
+            }
+            </pre>
+          </section><!-- /#lista_part -->
+
+          <section id="check">
+            <h2>Checkin de Participante</h2>
+
+            <p>Permite que você marque um participante como checado </p>
+            <h3>Resource URL</h3>
+            <pre><code>PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/:code.json</code></pre>
+
+            <h3>Parâmetros</h3>                    
+            <dl class="dl-horizontal">
+              <dt>auth_token</dt>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dt>event_id</dt>
+              <dd><span>Obrigatório.</span><p>O Identificador do evento que você deseja listar os participantes</p></dd>
+              <dt>code</dt>
+              <dd><p>Código do ingresso do participante</code></p></dd>
+              <dt>checked_at</dt>
+              <dd><p>Especifica a hora que o participante foi checado</code></p></dd>
+            </dl>
+
+            <h3>Exemplo de Requisição</h3>
+            <pre><code>
+              $ curl -X PUT --data "checked_at=2012-10-17T16:54:35-03:00" \ 
+                  https://www.eventick.com.br/api/v1/events/1706/attendees/AD1243.json \
+                  --user "f9d93dk211394:"
+            </code></pre>
+          </section><!-- /#checking -->
+          
+          <section id="check-all">
+            <h2>Checkin de vários Participantes</h2>
+
+            <p>Permite que você marque vários participantes como checkado. É preciso adicionar o "Content-Type: application/json" no cabeçalho da requisição.</p>
+            <h3>Resource URL</h3>
+            <pre><code>PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json</code></pre>
+
+            <h3>Parâmetros</h3>                    
+            <dl class="dl-horizontal">
+              <dt>auth_token</dt>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dt>event_id</dt>
+              <dd><span>Obrigatório.</span><p>O Identificador do evento que você deseja listar os participantes</p></dd>
+              <dt>attendees</dt>
+              <dd><p>Os attendees para serem checados devem ser enviados nos formato JSON. Ex: <code>{ "id": 10, "checked_at": "2012-10-17T16:54:35-03:00"}</code></p></dd>
+            </dl>
+
+            <h3>Exemplo de Requisição</h3>
+            <pre><code>$ curl -i https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json \
+              -H "Content-Type: application/json" \ 
+              -X PUT \
+              -u "f9d93dk211394:" \
+              -d '{"attendees":[{"id":10,"checked_at":"2012-10-17T16:54:35-03:00"}]}'</code></pre>
+          </section><!-- /#checking -->
+        </section><!-- /#participantes-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p>Designed by <a href="http://www.eventick.com.br">Eventick</a> © 2013 with <a href="http://twitter.github.io/bootstrap/">Bootstrap</a></p>
+    <ul class="footer-links inline">
+      <li><a href="http://blog.eventick.com.br">Blog</a></li>
+      <li class="muted">·</li>
+      <li><a href="mailto:api@eventick.com.br">Achou um bug? Avise a gente!</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="assets/js/jquery.js"></script>
+<script src="assets/js/bootstrap-transition.js"></script>
+<script src="assets/js/bootstrap-alert.js"></script>
+<script src="assets/js/bootstrap-modal.js"></script>
+<script src="assets/js/bootstrap-dropdown.js"></script>
+<script src="assets/js/bootstrap-scrollspy.js"></script>
+<script src="assets/js/bootstrap-tab.js"></script>
+<script src="assets/js/bootstrap-tooltip.js"></script>
+<script src="assets/js/bootstrap-popover.js"></script>
+<script src="assets/js/bootstrap-button.js"></script>
+<script src="assets/js/bootstrap-collapse.js"></script>
+<script src="assets/js/bootstrap-carousel.js"></script>
+<script src="assets/js/bootstrap-typeahead.js"></script>
+<script src="assets/js/bootstrap-affix.js"></script>
+
+<script src="assets/js/google-code-prettify/prettify.js"></script>
+
+<script src="assets/js/main.js"></script>
+<script>
+!function ($) {
+  $(function(){
+    window.prettyPrint && prettyPrint()   
+  })
+}(window.jQuery)
+</script>
+
+</body>
 </html>
