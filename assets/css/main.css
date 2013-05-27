@@ -17,12 +17,25 @@ body {
 }
 
 .navbar-fixed-top .brand span { 
-        font-family: Arvo;
+        font-family: Arvo, Rockwell, "Courier New", Courier, Georgia,
+                 Times, "Times New Roman", serif;
         text-transform: uppercase;
 }
 
 section {
     padding-top: 30px;
+}
+
+.row > section {
+    padding-top: 0;
+}
+
+
+section h2 {
+    padding-bottom: 9px;
+    margin: 20px 0 30px;
+    border-bottom: 1px solid #eee;
+    color: #5A5A5A;
 }
 
 code {
@@ -57,16 +70,20 @@ dd > span {
 }
 
 @media (max-width: 980px) {
-body{ 
-    padding-top: 0;
+    body{ 
+        padding-top: 0;
+    }
+
+    .nav-list {
+        top: 0;
+        width: 218px;
+        margin-top: 30px;
+        margin-right: 0;
+    }
 }
 
-.nav-list {
-    top: 0;
-    width: 218px;
-    margin-top: 30px;
-    margin-right: 0;
-}
+.affix-bottom {
+    position: fixed;
 }
 
 textarea {
@@ -82,7 +99,13 @@ textarea {
 
 
 @media (max-width: 767px){
-.nav-list {
-    width: 100%;
-}
+    .nav-list {
+        width: auto;
+    }
+
+    .nav-list.affix {
+        position: static;
+        width: auto;
+        top: 0;
+    }
 }

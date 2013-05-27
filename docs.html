@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>Documentaçãdo da Eventick API V1</title>
+  <title>Documentação - Eventick Rest API V1</title>
   <meta name="description" content="  ">
 
   <!-- styles -->
@@ -11,7 +11,7 @@
   <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 </head>
-<body data-spy="scroll" data-target=".sidebar" data-offset-top="200">
+<body data-spy="scroll" data-target=".sidebar">
   <div class="navbar navbar-inverse navbar-fixed-top" >
     <div class="navbar-inner">
       <button type="button"class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -35,6 +35,8 @@
       </div><!-- /.collapse -->
     </div>
   </div><!-- /.navbar -->
+    
+
 
   <div class="container">
     <div class="row">
@@ -51,8 +53,8 @@
           <li><a href="#evento">Informação de um evento</a></li>
           <li class="nav-header">Participantes</li>
           <li><a href="#lista_part">Listagem</a></li>
-          <li><a href="#participante">Informação do Participante</a></li>
-          <li><a href="#check">Checkin de participante</a></li>
+          <li><a href="#participante">Informação de um participante</a></li>
+          <li><a href="#check">Checkin de um participante</a></li>
           <li><a href="#check-all">Checkin de vários participantes</a></li>
         </ul>
       </div>
@@ -101,14 +103,14 @@
 
             <h3>Exemplo de Requisição</h3>
 
-            <pre><code>$ curl https://www.eventick.com.br/api/v1/tokens.json --user 'email@eventick.com.br:password' </code></pre>
+<pre><code>$ curl https://www.eventick.com.br/api/v1/tokens.json \
+    --user 'email@eventick.com.br:password'</code></pre>
 
             <h3>Exemplo de Resposta</h3>
-            <pre class="prettyprint language-javascript linenums">
-              {
-              "token":"dpoi2154wijdsk4fo65ow4o2pkd"
-              }
-            </pre>
+<pre class="prettyprint language-javascript linenums">
+{
+    "token":"dpoi2154wijdsk4fo65ow4o2pkd"
+}</pre>
         </section>
 
         <section id="eventos">
@@ -131,21 +133,21 @@
 
 
             <h3>Exemplo de Requisição</h3>
-            <pre><code>$ curl https://www.eventick.com.br/api/v1/events.json --user 'YUxHFjkB1x3QHB5ak5qr:'
-            </code></pre>
-
+<pre><code>$ curl https://www.eventick.com.br/api/v1/events.json \
+    -u 'YUxHFjkB1x3QHB5ak5qr:'</code></pre>
+              
             <h3>Exemplo de Resposta</h3>
-            <pre class="prettyprint language-javascript linenums">
-            {
-              "events":[
-                {
-                  "id": 11,
-                  "start_at": "2012-10-17T16:00:00-03:00",
-                  "title": "teste"
-                }
-              ]
-            }  
-            </pre>
+<pre class="prettyprint language-javascript linenums">
+{
+  "events":[
+    {
+      "id": 11,
+      "start_at": "2012-10-17T16:00:00-03:00",
+      "title": "teste"
+    }
+  ]
+}  
+</pre>
           </section>  
 
           <section id="evento">
@@ -163,35 +165,35 @@
             </dl>
 
             <h3>Exemplo de Requisição</h3>
-            <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706.json --user 'YUxHFjkB1x3QHB5ak5qr:'
-            </code></pre>
+<pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706.json \
+    -u 'YUxHFjkB1x3QHB5ak5qr:'</code></pre>
             
             <h3>Exemplo de Resposta</h3>
-            <pre class="prettyprint language-javascript linenums">
-            {
-              "events":[
-                {
-                  "id": 11,
-                  "start_at": "2012-10-17T16:00:00-03:00",
-                  "title":"Abril pro Ruby'13",
-                  "venue":"Faculdade Marista",
-                  "slug":"abrilproruby",
-                  "links":{
-                    "tickets":[
-                      {
-                          "id":4464,
-                          "name":"Segundo lote + camisa"
-                       },
-                       {
-                          "id":4463,
-                          "name":"Ingresso promocional"
-                       }
-                    ]
-                  }
-                }
-              ]
-            }
-            </pre>
+<pre class="prettyprint language-javascript linenums">
+{
+  "events":[
+    {
+      "id": 11,
+      "start_at": "2012-10-17T16:00:00-03:00",
+      "title":"Abril pro Ruby'13",
+      "venue":"Faculdade Marista",
+      "slug":"abrilproruby",
+      "links":{
+        "tickets":[
+          {
+              "id":4464,
+              "name":"Segundo lote + camisa"
+           },
+           {
+              "id":4463,
+              "name":"Ingresso promocional"
+           }
+        ]
+      }
+    }
+  ]
+}
+</pre>
           </section><!-- /#evento -->
         </section><!-- /#eventos -->
 
@@ -214,39 +216,42 @@
               <dt>event_id</dt>
               <dd><span>Obrigatório.</span><p>O identificador do evento que você deseja listar os participantes</p></dd>
               <dt>checked_after</dt>
-              <dd><span>Opcional.</span><p>Deve-se enviar apenas os participantes checados após essa hora</p></dd>
+              <dd>
+                  <span>Opcional.</span>
+                  <p>Ao informar esse parametro serão retornados apenas os participantes que fizeram após essa hora</p>
+                </dd>
             </dl>
 
 
             <h3>Exemplo de Requisição</h3>
-            <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees.json?checked_after=2012-10-17T16:00:00-03:00 /
-              --user 'YUxHFjkB1x3QHB5ak5qr:'
-            </code></pre>
+<pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees.json?checked_after=2012-10-17T16:00:00-03:00 \
+    -u 'YUxHFjkB1x3QHB5ak5qr:'</code></pre>
+              
             <h3>Exemplo de Resposta</h3>
-            <pre class="prettyprint language-javascript linenums">
-            {
-              "attendees":[
-                {
-                  "id": 29,
-                  "name": "Davidson",
-                  "code": "ZVYNDZ",
-                  "ticket_type": "mas",
-                  "checked_at": "2012-10-17T16:54:35-03:00"
-                },
-                {
-                  "id": 30,
-                  "name": "Cirdes",
-                  "code": "T84LCH",
-                  "ticket_type": "mas",
-                  "checked_at": ""
-                }
-              ]
-            }
-            </pre>
+<pre class="prettyprint language-javascript linenums">
+{
+  "attendees":[
+    {
+      "id": 29,
+      "name": "Davidson",
+      "code": "ZVYNDZ",
+      "ticket_type": "mas",
+      "checked_at": "2012-10-17T16:54:35-03:00"
+    },
+    {
+      "id": 30,
+      "name": "Cirdes",
+      "code": "T84LCH",
+      "ticket_type": "mas",
+      "checked_at": ""
+    }
+  ]
+}
+</pre>
           </section><!-- /#lista_part -->
           
           <section id="participante">
-            <h2>Informação de um Participante</h2>
+            <h2>Informação de um participante</h2>
             <h3>Resource URL</h3>
             <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_id/attendees/:id.json</code></pre>
 
@@ -263,26 +268,27 @@
 
 
             <h3>Exemplo de Requisição</h3>
-            <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees/69782.json -user "f9d93dk211394:"
-            </code></pre>
+<pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees/69782.json \
+    -u 'f9d93dk211394:'</code></pre>
+              
             <h3>Exemplo de Resposta</h3>
-            <pre class="prettyprint language-javascript linenums">
-             {
-              "attendees":[
-                {
-                  "id": 69782,
-                  "name": "Davidson",
-                  "code": "ZVYNDZ",
-                  "ticket_type": "mas",
-                  "checked_at": "2012-10-17T16:54:35-03:00"
-                }
-              ]
-            }
-            </pre>
+<pre class="prettyprint language-javascript linenums">
+{
+  "attendees":[
+    {
+      "id": 69782,
+      "name": "Davidson",
+      "code": "ZVYNDZ",
+      "ticket_type": "mas",
+      "checked_at": "2012-10-17T16:54:35-03:00"
+    }
+  ]
+}
+</pre>
           </section><!-- /#lista_part -->
 
           <section id="check">
-            <h2>Checkin de Participante</h2>
+            <h2>Checkin de um participante</h2>
 
             <p>Permite que você marque um participante como checado </p>
             <h3>Resource URL</h3>
@@ -295,21 +301,19 @@
               <dt>event_id</dt>
               <dd><span>Obrigatório.</span><p>O Identificador do evento que você deseja listar os participantes</p></dd>
               <dt>code</dt>
-              <dd><p>Código do ingresso do participante</code></p></dd>
+              <dd><p>Código do ingresso do participante</p></dd>
               <dt>checked_at</dt>
-              <dd><p>Especifica a hora que o participante foi checado</code></p></dd>
+              <dd><p>Especifica a hora que o participante foi checado</p></dd>
             </dl>
 
             <h3>Exemplo de Requisição</h3>
-            <pre><code>
-              $ curl -X PUT --data "checked_at=2012-10-17T16:54:35-03:00" \ 
-                  https://www.eventick.com.br/api/v1/events/1706/attendees/AD1243.json \
-                  --user "f9d93dk211394:"
-            </code></pre>
+<pre><code>$ curl -X PUT https://www.eventick.com.br/api/v1/events/1706/attendees/AD1243.json \
+    -u "f9d93dk211394:" \
+    -d "checked_at=2012-10-17T16:54:35-03:00" </code></pre>
           </section><!-- /#checking -->
           
           <section id="check-all">
-            <h2>Checkin de vários Participantes</h2>
+            <h2>Checkin de vários participantes</h2>
 
             <p>Permite que você marque vários participantes como checkado. É preciso adicionar o "Content-Type: application/json" no cabeçalho da requisição.</p>
             <h3>Resource URL</h3>
@@ -326,11 +330,10 @@
             </dl>
 
             <h3>Exemplo de Requisição</h3>
-            <pre><code>$ curl -i https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json \
-              -H "Content-Type: application/json" \ 
-              -X PUT \
-              -u "f9d93dk211394:" \
-              -d '{"attendees":[{"id":10,"checked_at":"2012-10-17T16:54:35-03:00"}]}'</code></pre>
+<pre><code>$ curl -X PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json \
+    -u "f9d93dk211394:" \              
+    -H "Content-Type: application/json" \           
+    -d '{"attendees":[{"id":10,"checked_at":"2012-10-17T16:54:35-03:00"}]}'</code></pre>
           </section><!-- /#checking -->
         </section><!-- /#participantes-->
       </div>

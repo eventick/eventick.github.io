@@ -1,4 +1,5 @@
 !function ($) {  
+    'use strict';
 $(function(){
 // side bar
     var $window = $(window)
@@ -6,12 +7,12 @@ $(function(){
     setTimeout(function () {
       $('.nav-list').affix({
         offset: {
-          top: function () { return $window.width() <= 980 ? 290 : 210 }
-        , bottom: 270
+          top: function () { return $window.width() <= 980 ? 260 : 210 }
+        , bottom: 300
         }
       })
-    }, 100)
+    }, 100);
     
   });
     
-}(window.jQuery)
+}(window.jQuery);
