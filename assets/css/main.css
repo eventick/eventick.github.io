@@ -31,11 +31,6 @@ section {
     padding-top: 30px;
 }
 
-.row > section {
-    padding-top: 0;
-}
-
-
 section h2 {
     padding-bottom: 9px;
     margin: 20px 0 30px;
