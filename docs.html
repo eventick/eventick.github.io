@@ -29,7 +29,11 @@
             <a href="./docs">Documentação</a>
           </li>
           <li>
+<<<<<<< HEAD
             <a href="./integracao">Websites</a>
+=======
+            <a href="./integracao.html">Integração com websites</a>
+>>>>>>> 77caf91dc8e15027df0a409662b002fd750f9701
           </li>
         </ul>
       </div><!-- /.collapse -->
@@ -65,21 +69,21 @@
               <h1>Introdução</h1>
             </div>
             <p> 
-              O Eventick é formado por desenvolvedores, sabemos da importância de uma API para
+              O Eventick foi criado por desenvolvedores. Sabemos da importância de uma API para
               que aplicativos possam se integrar com a nossa plataforma. Seguimos as orientaçoes de Design <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">RESTful</a> e  <a href="http://jsonapi.org/" target="_blank">JSON API</a>.
             </p>
 
             <p>A API está disponivel somente via HTTPS. A URL base é <code>https://www.eventick.com.br/api/v1</code>. Todos os dados devem ser recebidos e enviados em JSON. Os campos de data e tempo estarão no formato ISO 8601: <code>YYYY-MM-DDTHH:MM:SS±hh:mm</code></p>
             <section id="erros">
               <h2>Erros</h2>
-              <p>Utilizamos os status code do protocolo http, que estarão disponível no header de cada response.</p>
+              <p>Utilizamos os <i>status code</i> do protocolo HTTP, disponíveis no header de cada <i>response</i>.</p>
 
               <dl class="dl-horizontal">
                 <dt>200 OK</dt> <dd>Tudo funcionou como esperado</dd>
-                <dt>400 Bad Request</dt><dd>Geralmente um problema com os parametros.</dd>
-                <dt>401 Unauthorized</dt><dd>Acesso com token de acesso invalido.</dd>
+                <dt>400 Bad Request</dt><dd>Geralmente, um problema com os parâmetros.</dd>
+                <dt>401 Unauthorized</dt><dd>Tentativa de acesso com token inválido.</dd>
                 <dt>404 Not Found</dt><dd>O recurso acessado não existe.</dd>
-                <dt>50X Server errors</dt><dd>Nossa falta, algum erro do nosso servidor.</dd>
+                <dt>50X Server errors</dt><dd>Falha nossa, algum erro no servidor.</dd>
               </dl>
             </section>
           </section>
@@ -91,14 +95,14 @@
 
             <h2>Requisitando token</h2>
 
-            <p>Ao executar uma autenticação você receberá um token para as demais requisiçoes. A autenticação é via <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Auth.</a></p>
+            <p>Ao executar uma autenticação você receberá um token para as demais requisições. A autenticação é via <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Auth.</a></p>
             <h3>Resource URL</h3>
             <pre><code>GET https://www.eventick.com.br/api/v1/tokens.json</code></pre>
 
             <h3>Parâmetros</h3>
             <dl class="dl-horizontal">
               <dt>email</dt><dd><span>Obrigatório.</span><p>Você deve informar o email que você utiliza para acessar sua conta no Eventick.</p></dd>
-              <dt>password</dt><dd><span>Obrigatório.</span><p>Senha utlizada para acessa sua conta no eventick</p></dd>
+              <dt>password</dt><dd><span>Obrigatório.</span><p>Senha utlizada para acessa sua conta no Eventick.</p></dd>
             </dl>
 
             <h3>Exemplo de Requisição</h3>
@@ -128,7 +132,7 @@
             <h3>Parâmetros</h3>
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
-              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
             </dl>                    
 
 
@@ -159,9 +163,9 @@
             <h3>Parâmetros</h3>
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
-              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
               <dt>id</dt>
-              <dd><span>Obrigatório.</span><p>O identificador do evento</p></dd>
+              <dd><span>Obrigatório.</span><p>O identificador do evento.</p></dd>
             </dl>
 
             <h3>Exemplo de Requisição</h3>
@@ -201,7 +205,7 @@
           <div class="page-header">
             <h1>Participantes</h1>
           </div>
-          <p>Permite acessar os participantes de um evento e enviar para o Eventick os que já foram checados. </p>
+          <p>Permite acessar a lista de participantes de um evento e informar ao Eventick os participantes cujo check-in já foi realizado. </p>
 
           <section id="lista_part">
             <h2>Listagem de Participantes</h2>
@@ -212,13 +216,13 @@
 
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
-              <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
+              <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário.</p></dd>
               <dt>event_id</dt>
-              <dd><span>Obrigatório.</span><p>O identificador do evento que você deseja listar os participantes</p></dd>
+              <dd><span>Obrigatório.</span><p>O identificador do evento que você deseja listar os participantes.</p></dd>
               <dt>checked_after</dt>
               <dd>
                   <span>Opcional.</span>
-                  <p>Ao informar esse parametro serão retornados apenas os participantes que fizeram após essa hora</p>
+                  <p>Ao informar esse parametro serão retornados apenas os participantes que fizeram após essa hora.</p>
                 </dd>
             </dl>
 
@@ -259,11 +263,11 @@
 
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
-              <dd><span>Obrigatório.</span><p>Token necessario para identificação do usuário</p></dd>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
               <dt>event_id</dt>
-              <dd><span>Obrigatório.</span><p>O identificador do evento do participante</p></dd>
+              <dd><span>Obrigatório.</span><p>O identificador do evento do participante.</p></dd>
               <dt>id</dt>
-              <dd><span>Obrigatório.</span><p>O identificador do participante</p></dd>   
+              <dd><span>Obrigatório.</span><p>O identificador do participante.</p></dd>   
             </dl>
 
 
@@ -288,22 +292,22 @@
           </section><!-- /#lista_part -->
 
           <section id="check">
-            <h2>Checkin de um participante</h2>
+            <h2>Check-in de um participante</h2>
 
-            <p>Permite que você marque um participante como checado </p>
+            <p>Permite que você marque um participante como checado (check-in realizado).</p>
             <h3>Resource URL</h3>
             <pre><code>PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/:code.json</code></pre>
 
             <h3>Parâmetros</h3>                    
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
-              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
               <dt>event_id</dt>
-              <dd><span>Obrigatório.</span><p>O Identificador do evento que você deseja listar os participantes</p></dd>
+              <dd><span>Obrigatório.</span><p>O Identificador do evento do qual você deseja listar os participantes.</p></dd>
               <dt>code</dt>
-              <dd><p>Código do ingresso do participante</p></dd>
+              <dd><p>Código do ingresso do participante.</p></dd>
               <dt>checked_at</dt>
-              <dd><p>Especifica a hora que o participante foi checado</p></dd>
+              <dd><p>Especifica a hora que o participante foi checado.</p></dd>
             </dl>
 
             <h3>Exemplo de Requisição</h3>
@@ -313,20 +317,20 @@
           </section><!-- /#checking -->
           
           <section id="check-all">
-            <h2>Checkin de vários participantes</h2>
+            <h2>Check-in de vários participantes</h2>
 
-            <p>Permite que você marque vários participantes como checkado. É preciso adicionar o "Content-Type: application/json" no cabeçalho da requisição.</p>
+            <p>Permite que você marque vários participantes como checados. É preciso adicionar o "Content-Type: application/json" no cabeçalho da requisição.</p>
             <h3>Resource URL</h3>
             <pre><code>PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json</code></pre>
 
             <h3>Parâmetros</h3>                    
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
-              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário</p></dd>
+              <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
               <dt>event_id</dt>
-              <dd><span>Obrigatório.</span><p>O Identificador do evento que você deseja listar os participantes</p></dd>
+              <dd><span>Obrigatório.</span><p>O Identificador do evento do qual você deseja listar os participantes.</p></dd>
               <dt>attendees</dt>
-              <dd><p>Os attendees para serem checados devem ser enviados nos formato JSON. Ex: <code>{ "id": 10, "checked_at": "2012-10-17T16:54:35-03:00"}</code></p></dd>
+              <dd><p>Os participantes a serem checados devem ser enviados nos formato JSON. Ex: <code>{ "id": 10, "checked_at": "2012-10-17T16:54:35-03:00"}</code></p></dd>
             </dl>
 
             <h3>Exemplo de Requisição</h3>
