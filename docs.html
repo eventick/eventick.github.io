@@ -47,6 +47,7 @@
           <li class="nav-header">Documentação</li>
           <li><a href="#introducao">Introdução</a></li>
           <li><a href="#erros">Erros</a></li>
+          <li><a href="#libaries">Bibliotecas</a></li>
           <li class="nav-header">Autenticação</li>
           <li><a href="#autenticao">Recebendo o token</a></li>
           <li class="nav-header">Eventos</li>
@@ -83,6 +84,17 @@
                 <dt>50X Server errors</dt><dd>Falha nossa, algum erro no servidor.</dd>
               </dl>
             </section>
+              
+            <section id="libaries">
+                <h2>Bibliotecas</h2>
+                <p>Para agilizar seu desenvolvimento, alguns desenvolvedores criaram bibliotecas para nossa API. Caso você tenha criado uma e deseja incluir na lista, é só <a href="mailto:api@eventick.com.br">nos avisar</a>.</p>
+
+                <ul>
+                    <li><a href="https://github.com/lukelex/eventick_api">Ruby</a></li>
+                    <li><a href="https://github.com/rodrigoalvesvieira/eventick-api">Java</a></li>
+                    <li><a href="https://github.com/djalmaaraujo/eventickapi_php">PHP</a></li>
+                </ul>
+              </section>
           </section>
 
           <section id="autenticao">
@@ -93,6 +105,7 @@
             <h2>Requisitando token</h2>
 
             <p>Ao executar uma autenticação você receberá um token para as demais requisições. A autenticação é via <a href="http://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Auth.</a></p>
+            <p>Autenticação via token é ideal para scripts próprios, mas não é recomendado para software de terceiros.</p>
             <h3>Resource URL</h3>
             <pre><code>GET https://www.eventick.com.br/api/v1/tokens.json</code></pre>
 
