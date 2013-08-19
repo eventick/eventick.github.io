@@ -1,3 +1,3 @@
-http://develper.eventick.com.br
+http://developer.eventick.com.br
 ===================
 
