@@ -1,5 +1,5 @@
 $(function() {
-    var baseUrl = "http://www.eventick.com.br/assets/buttons/";
+    var baseUrl = "https://s3.amazonaws.com/uploads.sesamus/embed/";
 
     changeButton(baseUrl);
 
