@@ -10,7 +10,7 @@
   <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet">
   <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
-  <link href="http://developer.eventick.com.br/docs" rel="canonical">
+  <!-- <link href="http://developer.eventick.com.br/docs" rel="canonical"> -->
 </head>
 <body data-spy="scroll" data-target=".sidebar" data-offset-top="60">
   <div class="navbar navbar-inverse navbar-fixed-top" >
@@ -30,13 +30,13 @@
             <a href="./docs">Documentação</a>
           </li>
           <li>
-            <a href="./integracao">Integração com Websites</a>  
+            <a href="./integracao">Integração com Websites</a>
           </li>
         </ul>
       </div><!-- /.collapse -->
     </div>
   </div><!-- /.navbar -->
-    
+
 
 <div class="wrap">
   <div class="container">
@@ -66,7 +66,7 @@
             <div class="page-header">
               <h1>Introdução</h1>
             </div>
-            <p> 
+            <p>
               O Eventick foi criado por desenvolvedores. Sabemos da importância de uma API para
               que aplicativos possam se integrar com a nossa plataforma. Seguimos as orientaçoes de Design <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">RESTful</a> e  <a href="http://jsonapi.org/" target="_blank">JSON API</a>.
             </p>
@@ -84,7 +84,7 @@
                 <dt>50X Server errors</dt><dd>Falha nossa, algum erro no servidor.</dd>
               </dl>
             </section>
-              
+
             <section id="libaries">
                 <h2>Bibliotecas</h2>
                 <p>Para agilizar seu desenvolvimento, alguns desenvolvedores criaram bibliotecas para nossa API e plugins. Caso você tenha criado uma e deseja incluir na lista, é só <a href="mailto:api@eventick.com.br">nos avisar</a>.</p>
@@ -144,13 +144,13 @@
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
               <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
-            </dl>                    
+            </dl>
 
 
             <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl https://www.eventick.com.br/api/v1/events.json \
     -u 'YUxHFjkB1x3QHB5ak5qr:'</code></pre>
-              
+
             <h3>Exemplo de Resposta</h3>
 <pre class="prettyprint language-javascript linenums">
 {
@@ -161,9 +161,9 @@
       "title": "teste"
     }
   ]
-}  
+}
 </pre>
-          </section>  
+          </section>
 
           <section id="evento">
             <h2>Informação de um evento</h2>
@@ -182,7 +182,7 @@
             <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706.json \
     -u 'YUxHFjkB1x3QHB5ak5qr:'</code></pre>
-            
+
             <h3>Exemplo de Resposta</h3>
 <pre class="prettyprint language-javascript linenums">
 {
@@ -223,7 +223,7 @@
             <h3>Resource URL</h3>
             <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_id/attendees.json</code></pre>
 
-            <h3>Parâmetros</h3>                    
+            <h3>Parâmetros</h3>
 
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
@@ -241,7 +241,7 @@
             <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees.json?checked_after=2012-10-17T16:00:00-03:00 \
     -u 'YUxHFjkB1x3QHB5ak5qr:'</code></pre>
-              
+
             <h3>Exemplo de Resposta</h3>
 <pre class="prettyprint language-javascript linenums">
 {
@@ -266,13 +266,13 @@
 }
 </pre>
           </section><!-- /#lista_part -->
-          
+
           <section id="participante">
             <h2>Informação de um participante</h2>
             <h3>Resource URL</h3>
             <pre><code>GET https://www.eventick.com.br/api/v1/events/:event_id/attendees/:id.json</code></pre>
 
-            <h3>Parâmetros</h3>                    
+            <h3>Parâmetros</h3>
 
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
@@ -280,14 +280,14 @@
               <dt>event_id</dt>
               <dd><span>Obrigatório.</span><p>O identificador do evento do participante.</p></dd>
               <dt>id</dt>
-              <dd><span>Obrigatório.</span><p>O identificador do participante.</p></dd>   
+              <dd><span>Obrigatório.</span><p>O identificador do participante.</p></dd>
             </dl>
 
 
             <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl https://www.eventick.com.br/api/v1/events/1706/attendees/69782.json \
     -u 'f9d93dk211394:'</code></pre>
-              
+
             <h3>Exemplo de Resposta</h3>
 <pre class="prettyprint language-javascript linenums">
 {
@@ -312,7 +312,7 @@
             <h3>Resource URL</h3>
             <pre><code>PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/:code.json</code></pre>
 
-            <h3>Parâmetros</h3>                    
+            <h3>Parâmetros</h3>
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
               <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
@@ -329,7 +329,7 @@
     -u "f9d93dk211394:" \
     -d "checked_at=2012-10-17T16:54:35-03:00" </code></pre>
           </section><!-- /#checking -->
-          
+
           <section id="check-all">
             <h2>Check-in de vários participantes</h2>
 
@@ -337,7 +337,7 @@
             <h3>Resource URL</h3>
             <pre><code>PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json</code></pre>
 
-            <h3>Parâmetros</h3>                    
+            <h3>Parâmetros</h3>
             <dl class="dl-horizontal">
               <dt>auth_token</dt>
               <dd><span>Obrigatório.</span><p>Token necessário para identificação do usuário.</p></dd>
@@ -349,8 +349,8 @@
 
             <h3>Exemplo de Requisição</h3>
 <pre><code>$ curl -X PUT https://www.eventick.com.br/api/v1/events/:event_id/attendees/check_all.json \
-    -u "f9d93dk211394:" \              
-    -H "Content-Type: application/json" \           
+    -u "f9d93dk211394:" \
+    -H "Content-Type: application/json" \
     -d '{"attendees":[{"id":10,"checked_at":"2012-10-17T16:54:35-03:00"}]}'</code></pre>
           </section><!-- /#checking -->
         </section><!-- /#participantes-->
@@ -391,11 +391,11 @@
 <script>
 !function ($) {
   $(function(){
-    window.prettyPrint && prettyPrint()   
+    window.prettyPrint && prettyPrint()
   })
 }(window.jQuery)
 </script>
-    
+
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
